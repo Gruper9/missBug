@@ -1,26 +1,13 @@
 [
   {
-    "_id": "abc162",
-    "title": "Cannot save a Bug 2",
-    "description": "problem when clicking Save",
-    "severity": 9,
-    "createdAt": 1702912482921,
-    "labels": [
-      "critical",
-      "need-CR"
-      
-    ]
-  },
-  {
-    "_id": "abc1562",
-    "title": "Cannot save a Bug 3",
-    "description": "problem when clicking Save",
-    "severity": 4,
-    "createdAt": 1702912482921,
-    "labels": [
-      "critical",
-      "dev-branch"
-    ]
+    "_id": "80GR0",
+    "severity": null,
+    "createdAt": 1703094256960,
+    "owner": {
+      "_id": "u101",
+      "fullname": "Hadar gruper",
+      "isAdmin": true
+    }
   },
   {
     "_id": "abc1642",
@@ -32,7 +19,12 @@
       "critical",
       "need-CR",
       "dev-branch"
-    ]
+    ],
+    "owner": {
+      "_id": "u101",
+      "fullname": "Puki Ja",
+      "isAdmin": true
+    }
   },
   {
     "_id": "abc1632",
@@ -43,6 +35,10 @@
     "labels": [
       "critical",
       "need-CR"
-    ]
+    ],
+    "owner": {
+      "_id": "6iykr",
+      "fullname": "Kiki Ki"
+    }
   }
 ]

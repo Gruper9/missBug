@@ -17,7 +17,7 @@ export function BugIndex() {
     }, [filterBy])
 
     function loadBugs() {
-        console.log(filterBy);
+      
         bugService.query(filterBy).then(setBugs)
     }
 

@@ -14,8 +14,7 @@ const bugs = utilService.readJsonFile('data/bug.json')
 
 
 function query(filterBy) {
-    let bugsToReturn = bugs
-    console.log('from qery',filterBy)
+    let bugsToReturn = bugs 
     if (filterBy.title) {
         const regExp = new RegExp(filterBy.title, 'i')
         bugsToReturn = bugsToReturn.filter(bug => regExp.test(bug.title))
@@ -61,18 +60,30 @@ function getById(bugId) {
     return Promise.resolve(bug)
 }
 
-function remove(bugId) {
+function remove(bugId,loggedinUser) {
     const bugIdx = bugs.findIndex(bug => bug._id === bugId)
+    if (bugIdx === -1) return Promise.reject('No Such Bug')
+    const bug = bugs[bugIdx]
+    if (!loggedinUser.isAdmin &&
+        bug.owner._id !== loggedinUser._id) {
+        return Promise.reject('Not your bug')
+    }
     bugs.splice(bugIdx, 1)
     return _saveBugsToFile()
 }
 
-function save(bug) {
+function save(bug,loggedinUser) {
     if (bug._id) {
         const bugIdx = bugs.findIndex(currBug => currBug._id === bug._id)
         bugs[bugIdx] = bug
+        if (!loggedinUser.isAdmin &&
+            bugs[bugIdx].owner._id !== loggedinUser._id) {
+            return Promise.reject('Not your bug')
+        }
     } else {
+        if(!loggedinUser)return Promise.reject('none logged in')
         bug._id = utilService.makeId()
+        bug.owner = loggedinUser
         bugs.unshift(bug)
     }
     return _saveBugsToFile().then(() => bug)
